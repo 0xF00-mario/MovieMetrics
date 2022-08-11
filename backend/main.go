@@ -22,12 +22,8 @@ type Movie struct { // Ranking System: 1/36 for a "point"
 	Genre    string // if match: importance(1 / 36) * 7
 	Actors   string // if match: importance(1 / 36) * 11
 	Director string // if match: importance(1 / 36) * 8
-	// Rated    string // if match: importance(1 / 36) * 0 (REMOVE THIS?)
-	// Type     string // if match: importance(1 / 36) * 3 (REMOVE THIS?)
 	Language string // if match: importance(1 / 36) * 2
 	Poster   string // the url for posters
-	// Ratings  string // if match: importance(1 / 36) * 1
-
 	// value    string  //the short title for the movie used to simplify programming (usually will be set to a shorter version of the title)
 	priority float64 // The priority of the movie or the "score"
 	index    int     //index of the movie in the PriorityQueue
@@ -232,7 +228,7 @@ func getMovieSearch(w http.ResponseWriter, r *http.Request, common map[string]st
 func findMoviesByActor(actor string) ActorSearch {
 	words := strings.Split(actor, " ")
 	actorParse := strings.Join(words, "%20")
-	println(actorParse)
+	// println(actorParse)
 
 	dbURL := "https://api.themoviedb.org/3/search/person?api_key=" + api_key2 + "&language=en-US&query=" + actorParse + "&page=1&include_adult=false&region=US"
 	response, err := http.Get(dbURL)
